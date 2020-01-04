@@ -6,6 +6,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
+      <th scope="col"> Created by</th>
       <th scope="col">Created At</th>
       <th scope="col">Actions</th>
     </tr>
@@ -15,6 +16,7 @@
         <tr>
         <th scope="row">{{$value['id']}}</th>
             <td>{{$value['title']}}</td>
+            <td>{{$value->user->name}}</td>
             <td>{{ date('Y-m-d', strtotime($value['created_at'])) }}</td>
             <!-- <td><a href="">View</a> -->
             <td><a href="{{route('posts.show',['post' => $value['id'] ])}}">View</a>
