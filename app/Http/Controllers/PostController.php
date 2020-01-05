@@ -12,12 +12,19 @@ class PostController extends Controller
         return view('posts.create');
     }
     function store(StorePostRequest $request){
+        // $img = $request->file('image')->store('posts');
         Post::create([
             'title'=>$request->title,
+            // 'slug'=>$request->slug,
             'content'=>$request->content,
+            // 'image'=>$request->file('image'),
+            
             'user_id'=>$request->user()->id
 
+
         ]);
+        // $deletedPost = Post::onlyTrashed()->get();
+        // return $deletedPost;
         return redirect()->route('posts.index');
 
 
@@ -63,5 +70,8 @@ class PostController extends Controller
         return redirect()->route('posts.index');
 
     }
-  
+    
+
 }
+  
+

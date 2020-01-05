@@ -21,6 +21,11 @@
     <label>Content</label>
     <input name="content" type="text" class="form-control" id="exampleInputPassword1">
   </div>
+  <div class="form-group">
+    <label>Image</label>
+    <input name="content" type="file" class=" btn form-control-file" accept="image/jpg,image/png">
+  </div>
+  
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 @endsection('content')

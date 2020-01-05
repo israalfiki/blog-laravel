@@ -1,16 +1,34 @@
 <?php
 
 namespace App;
+use Cviebrock\EloquentSluggable\Sluggable;
+// use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'content','user_id'];
+    use Sluggable;
+    // use SoftDeletes;
+
+
+    protected $fillable = ['title', 'content', 'image','user_id'];
     public function user(){
-        // $post = Post::with('user')->get();
         return $this->belongsTo(User::class);
-        // return $post;
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 
 

@@ -24,7 +24,12 @@ Route::get('/posts/{post}','PostController@show')-> name('posts.show');
 Route::delete('/posts/{post}', 'PostController@destroy')->name('posts.destroy');
 Route::get('/posts/{post}/edit','PostController@edit')->name('posts.edit');
 Route::patch('/posts/{post}','PostController@update')->name('posts.update');
+Route::get('image/{filename}', 'HomeController@displayImage')->name('image.displayImage');
+
     
 });
+Route::get('/auth/login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
