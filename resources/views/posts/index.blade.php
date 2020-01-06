@@ -25,7 +25,6 @@
             <td>{{$value['slug']}}</td>
             <td>{{$value->user->name}}</td>
             <td>{{ date('Y-m-d', strtotime($value['created_at'])) }}</td>
-            <!-- <td><a href="">View</a> -->
             <td><a class="btn btn-primary"href="{{route('posts.show',['post' => $value['id'] ])}}">View</a>
 
             <a  class="btn btn-warning" href="{{route('posts.edit',['post' => $value['id'] ])}}">Edit</a>

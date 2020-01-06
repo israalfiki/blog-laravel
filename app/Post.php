@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use Sluggable;
-    // use SoftDeletes;
 
 
     protected $fillable = ['title', 'content', 'image','user_id'];

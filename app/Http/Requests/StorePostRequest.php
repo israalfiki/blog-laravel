@@ -26,7 +26,6 @@ class StorePostRequest extends FormRequest
         return [
             'title'=> 'required|min:3|unique:posts',
             'content'=>'required|min:10',
-            // 'file'=> 'nullable|mimes:jpg,png'
         ];
     
 }
