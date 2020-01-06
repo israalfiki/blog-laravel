@@ -21,6 +21,7 @@ class PostController extends Controller
     }
     
     function store(StorePostRequest $request){
+      
         $post = Post::create([
             'title'=>$request->title,
             'content'=>$request->content,

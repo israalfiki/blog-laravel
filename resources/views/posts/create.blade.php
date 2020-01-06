@@ -9,8 +9,7 @@
         </ul>
     </div>
 @endif
-<form method="POST" action="/posts">
-    <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
+<form method="POST" action="/posts" enctype="multipart/form-data">
     @csrf
 
   <div class="form-group">
@@ -23,9 +22,9 @@
   </div>
   <div class="form-group">
     <label>Image</label>
-    <input name="content" type="file" class=" btn form-control-file" accept="image/jpg,image/png">
+    <input name ="image" type="file" class=" btn form-control-file" accept="image/jpg,image/png">
   </div>
   
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Create</button>
 </form>
 @endsection('content')

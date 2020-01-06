@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
+use Storage;
 
 use Illuminate\Http\Request;
 use App\Post; // -> /providers/Post.php , this is the namespace
@@ -12,20 +13,21 @@ class PostController extends Controller
         return view('posts.create');
     }
     function store(StorePostRequest $request){
-        // $img = $request->file('image')->store('posts');
-        Post::create([
-            'title'=>$request->title,
-            // 'slug'=>$request->slug,
-            'content'=>$request->content,
-            // 'image'=>$request->file('image'),
-            
-            'user_id'=>$request->user()->id
-
-
-        ]);
-        // $deletedPost = Post::onlyTrashed()->get();
-        // return $deletedPost;
-        return redirect()->route('posts.index');
+        if($request->hasFile('image')){
+            $file=$request->file('image');
+            $extension=$request->file('image')->getClientOriginalExtension();
+            $filename=time().'.'.$extension;
+            $file->storeAs('public/upload',$filename);
+        }
+  
+        $post = new Post;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->image = $filename;
+        $post->user_id =$request->user()->id;
+        $post->save();
+       
+        return redirect('/posts');
 
 
     }
@@ -54,24 +56,28 @@ class PostController extends Controller
     function edit($id){
         $post = Post::find($id);
         return view('posts.edit',[
-            'post'=>$post,'id'=>$id
+            'post'=>$post,
         ]);
     }
-    function update($id){
+    function update($id, StorePostRequest $request){
+        
         $post= Post::find($id)->firstOrFail();
-        $post ->title = request()->title;
-        $post ->content=request()->content;
-  
-        $post->save();
+        $post ->title = $request->title;
+        $post ->content=$request->content;
+        $post->slug=$request->slug;
 
-        // return $post;
-     
-        // $post-> update($post->all());
+        if($request->hasFile('image')){
+            $file=$request->file('image');
+            $extension=$request->file('image')->getClientOriginalExtension();
+            $filename=time().'.'.$extension;
+            $file->storeAs('public/upload',$filename);
+        }
+        $post->image = $filename;
+      
+        $post->save();
         return redirect()->route('posts.index');
+        
 
     }
-    
-
 }
-  
 

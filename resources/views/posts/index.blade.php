@@ -3,11 +3,7 @@
 <div class="text-center m-2">
 <form action="/posts" method="post">
 <a class="btn btn-success btn-lg" style="align:center;" href="posts/create" role="button">Create Post</a>
-              
-              <input class="btn btn-lg btn-danger" type="submit" value="Restore" />
-               <!-- @method('delete') -->
-               @csrf
-               </form>
+
 
 </div>
 <table class="table">
